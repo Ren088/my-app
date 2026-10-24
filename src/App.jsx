@@ -1,11 +1,18 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
-
+import UserProfile from "./components/UserProfile";
+import Card from "./components/Card";
+import Button from "./components/Button";
+import { useState } from "react";
+import heroImg from "./assets/hero.png";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import "./App.css";
+const users = [
+  { id: 1, name: "Anna", role: "Frontend Dev" },
+  { id: 2, name: "James", role: "Backend Dev" },
+  { id: 3, name: "Lebron", role: "UI Designer" },
+];
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -16,7 +23,24 @@ function App() {
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
         <div>
-             <h1 className="text-5xl font-bold text-red-500">Hello, my first React app</h1>
+          <h1 className="text-5xl font-bold text-red-500">
+            Hello, my first React app
+          </h1>
+          <Button text="Save" color="green" />
+          <Button text="Delete" color="red" />
+          <Button text="Cancel" color="gray" />
+          <Card
+            title="React"
+            description="A library for building user interfaces."
+          />
+          <Card
+            title="Vite"
+            description="A fast build tool for modern web apps."
+          />
+          <Card title="Tailwind" description="A utility-first CSS framework." />
+          {users.map((user) => (
+            <UserProfile key={user.id} name={user.name} role={user.role} />
+          ))}
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
@@ -116,7 +140,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
